@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        width: 500px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    li a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+    }
+
+    li a:hover {
+        color: #007BFF;
+    }
+
+    .novo-item {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #28a745;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .novo-item:hover {
+        background-color: #1e7e34;
+    }
+</style>
+
+<div class="container">
+    <h2>Catálogo de Itens</h2>
+
+    <ul>
+    {% for item in itens %}
+        <li>
+            <a href="{{ url_for('main.item', id=item.id_item) }}">
+                {{ item.titulo }} ({{ item.tipo }})
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <a class="novo-item" href="{{ url_for('main.novo_item') }}">
+        Adicionar novo item
+    </a>
+</div>
+
+{% endblock %}

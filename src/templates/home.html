@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .container {
+        text-align: center;
+        margin-top: 80px;
+    }
+
+    h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    a.button {
+        text-decoration: none;
+        padding: 10px 20px;
+        background-color: #007BFF;
+        color: white;
+        border-radius: 5px;
+        transition: 0.3s;
+    }
+
+    a.button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <h1>Bem-vindo ao Sistema de Avaliações</h1>
+    <p>Veja e avalie filmes e livros!</p>        
+
+    <a class="button" href="{{ url_for('main.catalogo') }}">Ir para o Catálogo</a>
+</div>
+
+{% endblock %}

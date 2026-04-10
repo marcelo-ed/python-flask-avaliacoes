@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+{% block title %}Item{% endblock %}
+
+{% block content %}
+
+<style>
+    .container {
+        width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .info {
+        margin-bottom: 20px;
+        color: #555;
+    }
+
+    .descricao {
+        margin-bottom: 20px;
+        font-style: italic;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .nota {
+        font-weight: bold;
+        color: #007BFF;
+    }
+
+    textarea,
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-top: 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    textarea {
+        height: 80px;
+        resize: none;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 15px;
+        padding: 10px;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .avaliar-btn {
+        background-color: #28a745;
+    }
+
+    .avaliar-btn:hover {
+        background-color: #1e7e34;
+    }
+
+    .delete-btn {
+        background-color: #dc3545;
+    }
+
+    .delete-btn:hover {
+        background-color: #b02a37;
+    }
+
+    .editar-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 8px 15px;
+        background-color: #FF8C00;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .editar-btn:hover {
+        background-color: #e0a800;
+    }
+</style>
+
+<div class="container">
+    <h2>{{ item.titulo }}</h2>
+
+    <div class="info">
+        <p><strong>Ano:</strong> {{ item.ano }}</p>
+        <p><strong>Tipo:</strong> {{ item.tipo }}</p>
+    </div>
+
+    <div class="descricao">
+        <p>{{ item.descricao }}</p>
+    </div>
+
+    <h3>Avaliações</h3>
+
+    <ul>
+        {% for avaliacao in avaliacoes %}
+        <li>
+            <strong>{{ avaliacao.usuario.nome }}</strong><br>
+            <span class="nota">Nota: {{ avaliacao.nota }}</span><br>
+            {{ avaliacao.comentario }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Ações</h3>
+
+    <form method="POST">
+        <input type="number" name="nota" min="1" max="5" step="1" placeholder="Nota (1 a 5)">
+        <textarea name="comentario" placeholder="Comentário"></textarea>
+
+        <!-- AVALIAR -->
+        <button class="avaliar-btn" type="submit" name="acao" value="avaliar">
+            Enviar Avaliação
+        </button>
+
+        <!-- DELETAR -->
+        <button class="delete-btn" type="submit" name="acao" value="deletar"
+            onclick="return confirm('Tem certeza que deseja deletar este item?')">
+            Deletar Item
+        </button>
+    </form>
+
+    <a class="button editar-btn" href="{{ url_for('main.editar_item', id=item.id_item) }}">
+        Editar Item
+    </a>
+</div>
+
+{% endblock %}
