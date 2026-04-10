@@ -2,8 +2,10 @@ from flask import Flask
 from dotenv import load_dotenv
 import os
 
-from extensions import db
 from routes import main
+from flask_migrate import Migrate
+from extensions import db
+
 
 
 def create_app():
@@ -27,6 +29,11 @@ def create_app():
     app.config["SECRET_KEY"] = secret_key
 
     db.init_app(app)
+    
+    import models
+
+    Migrate(app, db)
+    
     app.register_blueprint(main)
 
     return app
