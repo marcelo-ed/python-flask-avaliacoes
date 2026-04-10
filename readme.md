@@ -129,7 +129,7 @@ cd <repo>
 python -m venv venv
 ```
 
-### Ativar no Windows:
+Ativar no Windows:
 
 ```bash
 venv\Scripts\activate
@@ -201,8 +201,7 @@ flask --app src.app:create_app run
 
 (INSERIR LINK AQUI)
 
-##👥 Integrantes
+## 👥 Integrantes
 
-###    Marcelo Eduardo Silva e Santos Lopes - 22605017
-
-###    Lucas Silva Martins - 22502092
+- Marcelo Eduardo Silva e Santos Lopes - 22605017
+- Lucas Silva Martins - 22502092
